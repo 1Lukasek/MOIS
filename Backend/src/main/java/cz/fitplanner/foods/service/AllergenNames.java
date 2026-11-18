@@ -2,9 +2,10 @@ package cz.fitplanner.foods.service;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 /** Open Food Facts allergen ids (14 EU allergens) to Czech display names. */
-final class AllergenNames {
+public final class AllergenNames {
 
     private static final Map<String, String> CS = Map.ofEntries(
             Map.entry("gluten", "lepek"),
@@ -23,6 +24,11 @@ final class AllergenNames {
             Map.entry("molluscs", "měkkýši"));
 
     private AllergenNames() {
+    }
+
+    /** All Czech allergen names a food can have (same strings as stored in food_allergen). */
+    public static Set<String> names() {
+        return Set.copyOf(CS.values());
     }
 
     /** Czech name for a tag like "en:milk"; empty for non-English or unknown tags. */
