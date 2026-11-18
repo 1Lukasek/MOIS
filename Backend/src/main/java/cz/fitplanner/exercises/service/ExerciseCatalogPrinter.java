@@ -34,8 +34,9 @@ public class ExerciseCatalogPrinter implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        String out = tx.execute(status -> render());
-        System.out.println(out);
+        // Print excercises
+        //String out = tx.execute(status -> render());
+        //System.out.println(out);
     }
 
     private String render() {
