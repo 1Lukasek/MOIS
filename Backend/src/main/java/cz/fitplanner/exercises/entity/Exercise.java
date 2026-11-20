@@ -14,6 +14,7 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 /** Local copy of a Wger exercise (one translation). Id = Wger exercise id. */
 @Entity
@@ -37,18 +38,21 @@ public class Exercise {
     private ExerciseCategory category;
 
     @ManyToMany
+    @BatchSize(size = 100)
     @JoinTable(name = "exercise_muscle",
             joinColumns = @JoinColumn(name = "exercise_id"),
             inverseJoinColumns = @JoinColumn(name = "muscle_id"))
     private Set<Muscle> muscles = new HashSet<>();
 
     @ManyToMany
+    @BatchSize(size = 100)
     @JoinTable(name = "exercise_muscle_secondary",
             joinColumns = @JoinColumn(name = "exercise_id"),
             inverseJoinColumns = @JoinColumn(name = "muscle_id"))
     private Set<Muscle> musclesSecondary = new HashSet<>();
 
     @ManyToMany
+    @BatchSize(size = 100)
     @JoinTable(name = "exercise_equipment",
             joinColumns = @JoinColumn(name = "exercise_id"),
             inverseJoinColumns = @JoinColumn(name = "equipment_id"))
