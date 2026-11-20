@@ -12,6 +12,7 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 /** Local copy of an Open Food Facts product. Id = barcode. Nutrition values per 100 g. */
 @Entity
@@ -56,6 +57,7 @@ public class Food {
 
     /** Czech allergen names, e.g. "mléko", "lepek". */
     @ElementCollection
+    @BatchSize(size = 100)
     @CollectionTable(name = "food_allergen", joinColumns = @JoinColumn(name = "food_code"))
     @Column(name = "allergen")
     private Set<String> allergens = new HashSet<>();
